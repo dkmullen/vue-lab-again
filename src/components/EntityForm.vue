@@ -1,5 +1,6 @@
 <script setup>
 import { reactive, ref } from 'vue'
+import BaseTextArea from './base-components/BaseTextArea.vue'
 
 const props = defineProps({
   formModel: { type: Array },
@@ -33,11 +34,27 @@ async function submit() {
           :md="item.cols || 6"
         >
           <BaseInput
+            v-if="!item.type || item.type !== 'textarea' && item.type !== 'select'"
             v-model="values[item.id]"
             :type="item.type || 'text'"
             :label="item.label"
             :id="item.id"
             :required="item.required"
+          />
+          <BaseTextArea
+            v-if="item.type === 'textarea'"
+            v-model="values[item.id]"
+            :label="item.label"
+            :id="item.id"
+            :required="item.required"
+          />
+          <BaseSelect
+            v-if="item.type === 'select'"
+            v-model="values[item.id]"
+            :label="item.label"
+            :id="item.id"
+            :required="item.required"
+            :items="item.items"
           />
         </v-col>
       </v-row>

@@ -7,8 +7,10 @@ const title = ref('Home')
 const formModel = [
   { id: 'first-name', label: 'First Name' },
   { id: 'last-name', label: 'Last Name' },
-  { id: 'email', label: 'Email', type: 'text' },
+  { id: 'email', label: 'Email', type: 'email' },
   { id: 'phone', label: 'Phone', type: 'phone', required: false },
+  { id: 'color', label: 'Favorite Color', type: 'select', required: false, items: ['Red', 'Blue', 'Green'] },
+  { id: 'team', label: 'Favorite Team', type: 'select', required: true, items: ['Browns', 'Guardians', 'Cavaliers'] },
   { id: 'message', label: 'Message', type: 'textarea', cols: 12 },
 ]
 
