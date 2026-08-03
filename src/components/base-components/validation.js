@@ -29,16 +29,6 @@ export const validationRules = {
     // Ten digits plus characters inserted by the mask
     (v) => !v || v.length === 12 || `Enter a ten-digit number - xxx-xxx-xxxx`,
   ],
-  shortTel: [
-    (v) => !v || /^\d{3}[\s.-]\d{4}$/.test(v) || `7-digit number - xxx-xxxx`,
-
-    // Seven digits plus the dash inserted by the mask
-    (v) => !v || v.length === 8 || `7-digit number - xxx-xxxx`,
-  ],
-  areaCode: [
-    (v) => !v || /^\d+$/.test(v) || "3 digits",
-    (v) => !v || (v && v.length === 3) || "3 digits",
-  ],
   requiredRule: [(v) => !!v || "This field is required."],
   fname: [(v) => !v || /^[A-Za-z'-]+$/.test(v) || "Contains invalid characters"],
   lname: [
@@ -54,7 +44,6 @@ export const validationRules = {
     (v) => !v || /^[A-Za-z0-9' -#.]+$/.test(v) || "Contains invalid characters",
   ],
   city: [(v) => !v || /^[\p{L}A-Za-z0-9' -]+$/u.test(v) || "Contains invalid characters"],
-  taxID: [(v) => !v || /^[\p{L}A-Za-z0-9'-]+$/u.test(v) || "Contains invalid characters"],
   permissive: [
     (v) =>
       !v ||

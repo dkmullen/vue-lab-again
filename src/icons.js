@@ -11,7 +11,9 @@ import {
   radios, dropdowns, etc. */
   mdiContentSave,
   mdiStopCircle,
-  // Add more icons here as needed
+  mdiSend,
+  mdiWhiteBalanceSunny,
+  mdiWeatherNight,
 } from "@mdi/js";
 
 // Map icon names to their imported SVG paths
@@ -24,5 +26,7 @@ export const icons = {
   "mdi-radiobox-marked": mdiRadioboxMarked,
   "mdi-radiobox-blank": mdiRadioboxBlank,
   "mdi-stop-circle": mdiStopCircle,
-  // Add more icons here as needed
+  "mdi-send": mdiSend,
+  "mdi-white-balance-sunny": mdiWhiteBalanceSunny,
+  "mdi-weather-night": mdiWeatherNight,
 };

@@ -21,5 +21,5 @@ function handleSubmit(values) {
 
 <template>
   <h1>{{ title }}</h1>
-  <EntityForm :formModel="formModel" @submit="handleSubmit" />
+  <EntityForm :formModel="formModel" @submit="handleSubmit" formTitle="Contact Us" />
 </template>

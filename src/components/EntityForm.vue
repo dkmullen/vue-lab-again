@@ -4,6 +4,7 @@ import BaseTextArea from './base-components/BaseTextArea.vue'
 
 const props = defineProps({
   formModel: { type: Array },
+  formTitle: { type: String, default: 'Form' },
 })
 
 const emit = defineEmits(['submit'])
@@ -21,10 +22,18 @@ async function submit() {
     emit('submit', values)
   }
 }
+
+async function clear() {
+  form.value.reset()
+  Object.keys(values).forEach((key) => (values[key] = ''))
+}
 </script>
 
 <template>
   <section id="form-wrapper">
+    <div class="text-center">
+      <h2>{{ formTitle }}</h2>
+    </div>
     <v-form ref="form" v-model="valid">
       <v-row density="compact">
         <v-col
@@ -60,7 +69,8 @@ async function submit() {
       </v-row>
       <v-row density="compact">
         <v-col align="center">
-          <BaseButton label="Submit" @click="submit"/>
+          <BaseButton label="Clear Form" @click="clear" color="secondary"/>
+          <BaseButton label="Submit" @click="submit" icon="mdi-send"/>
         </v-col>
       </v-row>
     </v-form>

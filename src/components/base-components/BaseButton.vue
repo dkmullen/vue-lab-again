@@ -8,7 +8,7 @@ const { label, icon } = defineProps({
 <template>
   <v-btn
     v-bind="{ color: 'primary', variant: 'flat', ...$attrs }"
-    class="custom-button"
+    class="custom-button ma-1"
     :prepend-icon="icon"
   >
     <slot>{{ label }}</slot>
