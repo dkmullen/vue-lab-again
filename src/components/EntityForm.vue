@@ -79,7 +79,7 @@ async function clear() {
 
 <style scoped>
 #form-wrapper {
-  max-width: 700px;
+  max-width: 800px;
   margin: auto;
   margin-bottom: 50px;
 }

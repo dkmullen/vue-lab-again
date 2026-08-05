@@ -6,6 +6,8 @@ const props = defineProps({
   label: String,
   required: { type: Boolean, default: formFieldProps.required },
   modelValue: { type: [String, Number], default: '' },
+  maxlength: { type: Number, default: 800 },
+  counter: { type: Boolean, default: true },
 })
 
 </script>
@@ -16,5 +18,7 @@ const props = defineProps({
     :label="props.required ? `${props.label}*` : props.label"
     :required="props.required ? props.required : formFieldProps.required"
     :rules="props.required ? validationRules.requiredRule : []"
+    :maxlength="props.maxlength"
+    :counter="props.counter"
   ></v-textarea>
 </template>

@@ -16,9 +16,9 @@ const props = defineProps({
   placeholder: { type: String },
   icon: { type: String },
   trim: { type: Boolean, default: true },
-  counter: { type: Boolean, default: false },
+  counter: { type: Boolean, default: true },
   tabindex: { type: Number, default: 1 },
-  maxlength: { type: Number, default: 255 },
+  maxlength: { type: Number, default: 40 },
 })
 
 const emit = defineEmits(['update:modelValue', 'hitEnter'])

@@ -6,6 +6,7 @@ const props = defineProps({
   label: String,
   required: { type: Boolean, default: formFieldProps.required },
   modelValue: { type: [String, Number], default: '' },
+  clearable: { type: Boolean, default: true },
 })
 </script>
 
@@ -17,6 +18,7 @@ const props = defineProps({
       :label="props.required ? `${props.label}*` : props.label"
       :required="props.required ? props.required : formFieldProps.required"
       :rules="props.required ? validationRules.requiredRule : []"
+      :clearable="props.clearable"
     ></v-select>
   </div>
 </template>
