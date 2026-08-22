@@ -1,16 +1,36 @@
 <script setup>
 
-defineProps({
+import { ref, computed } from 'vue'
+
+const pageCount = computed(() => Math.ceil(props.items.length / 10))
+const pageSize = ref(10)
+
+const props = defineProps({
   headers: { type: Array },
   items: { type: Array },
   title: { type: String, default: 'Table' },
   addButtonText: { type: String, default: 'Add' },
+  id: { type: String, default: 'shared-table' },
+  actions: { type: Array, default: () => [] },
 })
 
 const emit = defineEmits(['doAction'])
 
 function doAction(action, id) {
   emit('doAction', { action, id })
+}
+
+function getIcon(action) {
+  switch (action) {
+    case 'view':
+      return 'mdi-eye'
+    case 'edit':
+      return 'mdi-pencil'
+    case 'delete':
+      return 'mdi-delete'
+    default:
+      return ''
+  }
 }
 
 </script>
@@ -21,6 +41,9 @@ function doAction(action, id) {
       :headers="headers"
       :hide-default-footer="items.length < 11"
       :items="items"
+      :items-per-page="pageSize"
+      :page-count="pageCount"
+      :id="id"
     >
       <template v-slot:top>
         <v-toolbar flat>
@@ -41,9 +64,9 @@ function doAction(action, id) {
 
       <template v-slot:[`item.actions`]="{ item }">
         <div class="d-flex ga-2 justify-end">
-          <v-icon color="medium-emphasis" icon="mdi-eye" size="small" @click="doAction('view', item.id)"></v-icon>
-          <v-icon color="medium-emphasis" icon="mdi-pencil" size="small" @click="doAction('edit', item.id)"></v-icon>
-          <v-icon color="medium-emphasis" icon="mdi-delete" size="small" @click="doAction('delete', item.id)"></v-icon>
+          <v-icon v-for="action in actions" :key="action" :color="medium-emphasis"
+            :icon="getIcon(action)" size="small" @click="doAction(action, item.id)">
+          </v-icon>
         </div>
       </template>
 
@@ -55,4 +78,10 @@ function doAction(action, id) {
     </v-data-table>
   </v-sheet>
 </template>
+
+<style scoped>
+#shared-table {
+  height: 70vh;
+}
+</style>
 

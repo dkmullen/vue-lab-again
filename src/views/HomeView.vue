@@ -1,6 +1,6 @@
 <script setup>
 import { ref, onMounted } from 'vue'
-import EntityForm from '@/components/EntityForm.vue'
+import EntityForm from '@/components/shared-components/EntityForm.vue'
 
 const title = ref('Home')
 

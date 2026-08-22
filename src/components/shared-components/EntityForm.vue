@@ -1,6 +1,5 @@
 <script setup>
 import { reactive, ref } from 'vue'
-import BaseTextArea from './base-components/BaseTextArea.vue'
 
 const props = defineProps({
   formModel: { type: Array },

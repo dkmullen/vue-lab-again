@@ -1,6 +1,6 @@
 <script setup>
 import { onMounted } from 'vue'
-import EntityForm from '@/components/EntityForm.vue'
+import EntityForm from '@/components/shared-components/EntityForm.vue'
 
 const formModel = [
   { id: 'name', label: 'Name', cols: 3 },
