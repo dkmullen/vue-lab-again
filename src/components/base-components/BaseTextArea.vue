@@ -14,6 +14,7 @@ const props = defineProps({
 <template>
   <v-textarea
     v-bind="{ variant: formFieldProps.variant, ...$attrs }"
+    :tabindex="formFieldProps.tabindex"
     :class="formFieldProps.class"
     :label="props.required ? `${props.label}*` : props.label"
     :required="props.required ? props.required : formFieldProps.required"

@@ -6,4 +6,5 @@ export const formFieldProps = {
   class: "custom-form-field",
   required: true,
   density: "comfortable",
+  tabindex: 0,
 };

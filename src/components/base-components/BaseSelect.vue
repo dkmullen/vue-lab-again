@@ -14,6 +14,7 @@ const props = defineProps({
   <div>
     <v-select
       v-bind="{ variant: formFieldProps.variant, ...$attrs, density: formFieldProps.density }"
+      :tabindex="formFieldProps.tabindex"
       :class="formFieldProps.class"
       :label="props.required ? `${props.label}*` : props.label"
       :required="props.required ? props.required : formFieldProps.required"

@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import EntityForm from '@/components/EntityForm.vue'
 
 const title = ref('Home')
@@ -17,6 +17,14 @@ const formModel = [
 function handleSubmit(values) {
   console.log(values)
 }
+
+onMounted(() => {
+  const input = document.getElementById('first-name')
+  console.log('input', input)
+  if (input) {
+    input.focus()
+  }
+})
 </script>
 
 <template>

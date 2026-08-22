@@ -1,4 +1,5 @@
 <script setup>
+import { onMounted } from 'vue'
 import EntityForm from '@/components/EntityForm.vue'
 
 const formModel = [
@@ -14,7 +15,14 @@ function handleSubmit(values) {
   console.log(values)
 }
 
+onMounted(() => {
+  const input = document.getElementById('name')
+  if (input) {
+    input.focus()
+  }
+})
 </script>
+
 <template>
   <h1>Page Two</h1>
   <p>Heel it now, dig?</p>

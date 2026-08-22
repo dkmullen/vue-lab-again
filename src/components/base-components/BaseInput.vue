@@ -2,7 +2,6 @@
 import { computed, ref } from 'vue'
 import { validationRules } from './validation'
 import { vMaska } from 'maska/vue'
-
 import { formFieldProps } from './shared-props'
 
 const isRequired = computed(() => props.required)
@@ -17,7 +16,7 @@ const props = defineProps({
   icon: { type: String },
   trim: { type: Boolean, default: true },
   counter: { type: Boolean, default: true },
-  tabindex: { type: Number, default: 1 },
+  tabindex: { type: Number, default: formFieldProps.tabindex },
   maxlength: { type: Number, default: 40 },
 })
 
@@ -75,11 +74,10 @@ function focus() {
       :id="id"
       :label="isRequired ? `${props.label}*` : props.label"
       v-bind="{
-        variant: formFieldProps.variant,
-        density: formFieldProps.density,
-        tabindex: formFieldProps.tabindex,
-        ...$attrs,
-      }"
+          variant: formFieldProps.variant,
+          density: formFieldProps.density,
+          ...$attrs,
+        }"
       :class="formFieldProps.class"
       :required="isRequired"
       :rules="typeRule"
