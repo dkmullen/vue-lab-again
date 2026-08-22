@@ -76,7 +76,7 @@ export default createVuetify({
           "on-surface": "#dee3e5",
           outline: "#869396",
           "outline-variant": "#3c494c",
-          primary: "#1f6ae2",
+          primary: "#268b98",
           "on-primary": "#ffffff",
           secondary: "#e4ce2e",
           "on-secondary": "#003730",

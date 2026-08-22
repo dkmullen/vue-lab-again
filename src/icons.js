@@ -14,6 +14,13 @@ import {
   mdiSend,
   mdiWhiteBalanceSunny,
   mdiWeatherNight,
+  mdiDelete,
+  mdiPencil,
+  mdiEye,
+  mdiBook,
+  mdiPlus,
+  mdiChevronRight,
+  mdiChevronLeft,
 } from "@mdi/js";
 
 // Map icon names to their imported SVG paths
@@ -29,4 +36,11 @@ export const icons = {
   "mdi-send": mdiSend,
   "mdi-white-balance-sunny": mdiWhiteBalanceSunny,
   "mdi-weather-night": mdiWeatherNight,
+  "mdi-delete": mdiDelete,
+  "mdi-pencil": mdiPencil,
+  "mdi-eye": mdiEye,
+  "mdi-book": mdiBook,
+  "mdi-plus": mdiPlus,
+  "mdi-chevron-right": mdiChevronRight,
+  "mdi-chevron-left": mdiChevronLeft,
 };
