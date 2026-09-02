@@ -26,6 +26,7 @@ onMounted(() => {
       <router-link class="nav-link mr-4" to="/">Home</router-link>
       <router-link class="nav-link mr-4" to="/page-two">Page Two</router-link>
       <router-link class="nav-link mr-4" to="/about">About</router-link>
+      <router-link class="nav-link mr-4" to="/articles">Articles</router-link>
     </div>
     <div>
       <v-btn icon @click="toggleTheme" variant="text">

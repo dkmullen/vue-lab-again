@@ -18,7 +18,24 @@ const router = createRouter({
       name: 'about',
       component: () => import('../views/AboutView.vue'),
     },
-  ],
+    {
+      path: '/articles',
+      name: 'articles',
+      redirect: '/articles-list',
+      children: [
+        {
+          path: '',
+          name: 'articles-list',
+          component: () => import('../views/ArticlesList.vue'),
+        },
+        {
+          path: ':id',
+          name: 'article-detail',
+          component: () => import('../views/ArticleDetail.vue'),
+        }
+      ]
+    }
+  ]
 })
 
 export default router
