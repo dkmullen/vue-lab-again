@@ -1,17 +1,44 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import remarkHtml from 'remark-html'
 import remarkParse from 'remark-parse'
 import { unified } from 'unified'
-import articleMarkdown from './example.md?raw'
+import { getArticle, getArticles } from '@/services/apiService.js'
 
+onMounted(async () => {
+  await fetchArticles()
+})
+
+const articles = ref([])
+const articleMarkdown = ref('')
 const articleContent = ref('')
-async function loadMarkdown() {
+
+async function fetchArticles() {
+  try {
+    const response = await getArticles()
+    articles.value = response?.data?.Items ?? []
+  } catch (error) {
+    console.error('Error fetching articles:', error)
+  }
+}
+
+async function fetchArticle(id, date) {
+  try {
+    const response = await getArticle(id, date)
+    const markdownText = response?.data?.Item?.article ?? ''
+    articleMarkdown.value = markdownText
+    await loadMarkdown(markdownText)
+  } catch (error) {
+    console.error('Error fetching article:', error)
+  }
+}
+
+async function loadMarkdown(markdownText = articleMarkdown.value) {
   try {
     const file = await unified()
       .use(remarkParse)
       .use(remarkHtml)
-      .process(articleMarkdown)
+      .process(markdownText)
 
     articleContent.value = String(file)
   } catch (error) {
@@ -19,25 +46,15 @@ async function loadMarkdown() {
   }
 }
 
-
-const articles = ref([
-  { id: 1, title: 'Article 1', date: '2026-01-01', tagline: 'This is the tagline for Article 1 ' },
-  { id: 2, title: 'Article 2', date: '2026-02-01', tagline: 'This is the tagline for Article 1 ' },
-  { id: 3, title: 'Article 3', date: '2026-03-01', tagline: 'This is the tagline for Article 1 ' },
-])
 </script>
 
 <template>
-  <div>
-    <h1>Articles</h1>
-    <ul>
-      <li v-for="article in articles" :key="article.id">
-        <h2><a :href="`/articles/${article.id}`">{{ article.title }}</a></h2>
-        <p>{{ article.date }}</p>
-        <p>{{ article.tagline }}</p>
-      </li>
-    </ul>
-  <v-btn @click="loadMarkdown">Click</v-btn>
+  <h1>Articles</h1>
+  <p v-for="article in articles" :key="article.id">
+    <span class="pseudo-link" @click="fetchArticle(article.id, article.date)">{{ article.title }}</span> -
+    <span>{{ article.date }}</span> -
+    <span>{{ article.tagline }}</span> -
+    <span>{{  article.id }}</span>
+  </p>
   <div v-html="articleContent"></div>
-  </div>
 </template>

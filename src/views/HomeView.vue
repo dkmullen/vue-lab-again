@@ -20,7 +20,6 @@ function handleSubmit(values) {
 
 onMounted(() => {
   const input = document.getElementById('first-name')
-  console.log('input', input)
   if (input) {
     input.focus()
   }

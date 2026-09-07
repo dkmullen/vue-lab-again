@@ -3,3 +3,8 @@ body {
   margin: 0 auto;
   padding: 0 20px;
 }
+
+.pseudo-link {
+  color: rgb(150, 229, 255);
+  cursor: pointer;
+}
