@@ -51,10 +51,10 @@ async function loadMarkdown(markdownText = articleMarkdown.value) {
 
 <template>
   <h1>Articles</h1>
-  <p v-for="article in articles" :key="article.id">
-    <span class="pseudo-link" @click="fetchArticle(article.id, article.date)">{{ article.title }}</span> -
-    <span>{{ article.date.slice(5, 10) }}-{{ article.date.slice(0, 4) }}</span> -
-    <span>{{ article.tagline }}</span>
-  </p>
+  <div v-for="article in articles" :key="article.id">
+    <p><span class="pseudo-link" @click="fetchArticle(article.id, article.date)">{{ article.title }}</span> -
+    {{ article.date.slice(5, 10) }}-{{ article.date.slice(0, 4) }}<br />
+    {{ article.tagline }}</p>
+  </div>
   <div v-html="articleContent"></div>
 </template>

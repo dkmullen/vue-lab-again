@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { useAppStore } from '@/stores/appstore'
 
 const apiClient = axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL || '/api',
@@ -8,11 +9,20 @@ const apiClient = axios.create({
   },
 })
 
+function withLoading(request) {
+  const appStore = useAppStore()
+  appStore.setLoading(true)
+
+  return Promise.resolve(request()).finally(() => {
+    appStore.setLoading(false)
+  })
+}
+
 export function getArticles() {
-  return apiClient.get('/articles')
+  return withLoading(() => apiClient.get('/articles'))
 }
 
 export function getArticle(id, date) {
-  return apiClient.get(`/articles?id=${id}&date=${date}`)
+  return withLoading(() => apiClient.get(`/articles?id=${id}&date=${date}`))
 }
 
