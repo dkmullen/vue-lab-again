@@ -17,6 +17,7 @@ async function fetchArticles() {
   try {
     const response = await getArticles()
     articles.value = response?.data?.Items ?? []
+    articles.value.sort((a, b) => (a.date || '').localeCompare(b.date || ''))
   } catch (error) {
     console.error('Error fetching articles:', error)
   }
@@ -52,9 +53,8 @@ async function loadMarkdown(markdownText = articleMarkdown.value) {
   <h1>Articles</h1>
   <p v-for="article in articles" :key="article.id">
     <span class="pseudo-link" @click="fetchArticle(article.id, article.date)">{{ article.title }}</span> -
-    <span>{{ article.date }}</span> -
-    <span>{{ article.tagline }}</span> -
-    <span>{{  article.id }}</span>
+    <span>{{ article.date.slice(5, 10) }}-{{ article.date.slice(0, 4) }}</span> -
+    <span>{{ article.tagline }}</span>
   </p>
   <div v-html="articleContent"></div>
 </template>
