@@ -74,10 +74,10 @@ function focus() {
       :id="id"
       :label="isRequired ? `${props.label}*` : props.label"
       v-bind="{
-          variant: formFieldProps.variant,
-          density: formFieldProps.density,
-          ...$attrs,
-        }"
+        variant: formFieldProps.variant,
+        density: formFieldProps.density,
+        ...$attrs,
+      }"
       :class="formFieldProps.class"
       :required="isRequired"
       :rules="typeRule"

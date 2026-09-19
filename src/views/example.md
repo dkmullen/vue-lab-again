@@ -1,9 +1,8 @@
-Inerrancy
-==================================
+# Inerrancy
 
-  By Dennis Mullen  
-  https://dkmullen.com/2026/09/inerrancy 
-  Friday, 4 September 2026
+By Dennis Mullen  
+ https://dkmullen.com/2026/09/inerrancy
+Friday, 4 September 2026
 
 Biblical inerrancy is the concept that the Bible is without errors of any kind in the original manuscripts. This is an essential doctrine in American evangelicalism.
 

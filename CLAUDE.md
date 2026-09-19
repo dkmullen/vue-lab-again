@@ -13,9 +13,9 @@ npm run lint      # run oxlint --fix, then eslint --fix --cache
 npm run format    # run oxfmt over src/
 ```
 
-There is no test suite/framework configured in this project.
-
 Linting uses two tools together: `oxlint` (fast, primary correctness checks, config in `.oxlintrc.json`) and `eslint` (Vue-specific rules via `eslint-plugin-vue`, config in `eslint.config.js`). `eslint-plugin-oxlint` disables ESLint rules that oxlint already covers, so the two don't conflict. Formatting is done by `oxfmt` (not Prettier), configured via `.oxfmtrc.json` (no semicolons, single quotes); `eslint-config-prettier` is used only to turn off ESLint's own formatting rules.
+
+There is no test suite or test framework configured. Testing is manual (running `npm run dev` and using the app in the browser).
 
 ## Architecture
 
@@ -54,8 +54,43 @@ Field components live in `src/components/base-components/` (`BaseInput`, `BaseSe
 
 Masked inputs (SSN, phone, zip, long dates) are handled in `BaseInput.vue` via `maska`'s `v-maska` directive, driven by an internal `typeConfig` map of hint text + mask pattern per `type`.
 
-When adding a new field type, it typically needs entries in three places: `EntityForm.vue`'s `v-if` chain (to pick the component), `validation.js` (if it needs its own rules), and possibly `BaseInput.vue`'s `typeConfig` (if it needs a mask/hint).
-
 ### Routing / views
 
 Routes are defined in `src/router/index.js` with lazy-loaded view components from `src/views/`. Views are thin — they define a `formModel` and render `<EntityForm>` (see `HomeView.vue`, `PageTwo.vue`).
+
+### Field type system
+
+The form field system uses a consistent pattern across three layers:
+
+**Entity form descriptors** define the fields to render:
+```js
+{ id: 'email', label: 'Email', type: 'email', required: true, cols: 6 }
+```
+
+The `type` field (e.g., `'email'`, `'ssn'`, `'phone'`) drives component selection, validation, and masking. New types need entries in:
+1. **EntityForm.vue** — the `v-if` chain that maps type to component (`email` → `<BaseInput type="email">`)
+2. **validation.js** — the `validationRules` map defining field-specific validators (optional)
+3. **BaseInput.vue** — the `typeConfig` map for input masks and hints (optional, only if masking is needed)
+
+**Validation rules** in `validation.js` are arrays of validator functions with signature `(value) => boolean | string`:
+```js
+email: [
+  (v) => !v || /^...@[^@]+$/.test(v) || 'Email must be valid',
+]
+```
+Return `true` (implicit) if valid, or a string error message if invalid. A required field auto-prepends `validationRules.requiredRule`.
+
+**Masking** in `BaseInput.typeConfig` uses `maska` with a `{ mask: '#####-####' }` pattern (optional):
+```js
+phone: { hint: 'xxx-xxx-xxxx', mask: { mask: '###-###-####' } }
+```
+Masked fields show a hint in the component's label hint text.
+
+### Controlled components vs. v-model
+
+Most form fields use direct `v-model` binding. For advanced file inputs or custom inputs, use a controlled pattern instead:
+- Bind `:model-value="stateRef"`
+- Handle `@update:model-value="handler"` to validate and transform the input before updating state
+- Return the transformed value to `:model-value` to keep the component in sync
+
+Example: `FileSelection.vue` uses this to enforce one JPG + one PNG by splitting incoming file arrays into typed slots (see `handleFilesChange` in that component).

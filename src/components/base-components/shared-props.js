@@ -1,10 +1,10 @@
 export const commonProps = {
   label: String,
-};
+}
 export const formFieldProps = {
-  variant: "outlined",
-  class: "custom-form-field",
+  variant: 'outlined',
+  class: 'custom-form-field',
   required: true,
-  density: "comfortable",
+  density: 'comfortable',
   tabindex: 0,
-};
+}

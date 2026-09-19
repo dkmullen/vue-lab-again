@@ -9,7 +9,6 @@ const props = defineProps({
   maxlength: { type: Number, default: 800 },
   counter: { type: Boolean, default: true },
 })
-
 </script>
 <template>
   <v-textarea

@@ -1,6 +1,6 @@
 <script setup></script>
 
-  <v-dialog v-model="dialog" max-width="500">
+<v-dialog v-model="dialog" max-width="500">
     <v-card
       :subtitle="`${isEditing ? 'Update' : 'Create'} your favorite book`"
       :title="`${isEditing ? 'Edit' : 'Add'} a Book`"

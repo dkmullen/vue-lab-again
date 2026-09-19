@@ -57,18 +57,81 @@ function save(item) {
 }
 
 const books = [
-  { id: 1, title: 'To Kill a Mockingbird', author: 'Harper Lee', genre: 'Fiction', year: 1960, pages: 281 },
+  {
+    id: 1,
+    title: 'To Kill a Mockingbird',
+    author: 'Harper Lee',
+    genre: 'Fiction',
+    year: 1960,
+    pages: 281,
+  },
   { id: 2, title: '1984', author: 'George Orwell', genre: 'Dystopian', year: 1949, pages: 328 },
-  { id: 3, title: 'The Great Gatsby', author: 'F. Scott Fitzgerald', genre: 'Fiction', year: 1925, pages: 180 },
-  { id: 4, title: 'Sapiens', author: 'Yuval Noah Harari', genre: 'Non-Fiction', year: 2011, pages: 443 },
+  {
+    id: 3,
+    title: 'The Great Gatsby',
+    author: 'F. Scott Fitzgerald',
+    genre: 'Fiction',
+    year: 1925,
+    pages: 180,
+  },
+  {
+    id: 4,
+    title: 'Sapiens',
+    author: 'Yuval Noah Harari',
+    genre: 'Non-Fiction',
+    year: 2011,
+    pages: 443,
+  },
   { id: 5, title: 'Dune', author: 'Frank Herbert', genre: 'Sci-Fi', year: 1965, pages: 412 },
-  { id: 6, title: 'Brave New World', author: 'Aldous Huxley', genre: 'Dystopian', year: 1932, pages: 311 },
-  { id: 7, title: 'The Catcher in the Rye', author: 'J.D. Salinger', genre: 'Fiction', year: 1951, pages: 214 },
-  { id: 8, title: 'The Hobbit', author: 'J.R.R. Tolkien', genre: 'Fiction', year: 1937, pages: 310 },
-  { id: 9, title: 'Fahrenheit 451', author: 'Ray Bradbury', genre: 'Dystopian', year: 1953, pages: 194 },
+  {
+    id: 6,
+    title: 'Brave New World',
+    author: 'Aldous Huxley',
+    genre: 'Dystopian',
+    year: 1932,
+    pages: 311,
+  },
+  {
+    id: 7,
+    title: 'The Catcher in the Rye',
+    author: 'J.D. Salinger',
+    genre: 'Fiction',
+    year: 1951,
+    pages: 214,
+  },
+  {
+    id: 8,
+    title: 'The Hobbit',
+    author: 'J.R.R. Tolkien',
+    genre: 'Fiction',
+    year: 1937,
+    pages: 310,
+  },
+  {
+    id: 9,
+    title: 'Fahrenheit 451',
+    author: 'Ray Bradbury',
+    genre: 'Dystopian',
+    year: 1953,
+    pages: 194,
+  },
   { id: 10, title: 'The Martian', author: 'Andy Weir', genre: 'Sci-Fi', year: 2011, pages: 369 },
-  { id: 11, title: 'The Road', author: 'Cormac McCarthy', genre: 'Dystopian', year: 2006, pages: 287 },
-  { id: 12, title: 'The Alchemist', author: 'Paulo Coelho', genre: 'Fiction', year: 1988, pages: 208 },
+  {
+    id: 11,
+    title: 'The Road',
+    author: 'Cormac McCarthy',
+    genre: 'Dystopian',
+    year: 2006,
+    pages: 287,
+  },
+  {
+    id: 12,
+    title: 'The Alchemist',
+    author: 'Paulo Coelho',
+    genre: 'Fiction',
+    year: 1988,
+    pages: 208,
+  },
 ]
 
 const currentYear = new Date().getFullYear()
@@ -76,7 +139,7 @@ const formModel = ref(createNewRecord())
 const dialog = shallowRef(false)
 // const isEditing = toRef(() => !!formModel.value.id)
 
-function createNewRecord () {
+function createNewRecord() {
   return {
     title: '',
     author: '',
@@ -86,8 +149,8 @@ function createNewRecord () {
   }
 }
 
-function edit (id) {
-  const found = books.value.find(book => book.id === id)
+function edit(id) {
+  const found = books.value.find((book) => book.id === id)
   formModel.value = {
     id: found.id,
     title: found.title,
@@ -98,7 +161,6 @@ function edit (id) {
   }
   dialog.value = true
 }
-
 </script>
 
 <template>

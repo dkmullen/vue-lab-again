@@ -11,9 +11,7 @@ const emit = defineEmits(['submit'])
 const form = ref()
 const valid = ref(false)
 
-const values = reactive(
-  Object.fromEntries(props.formModel.map((item) => [item.id, '']))
-)
+const values = reactive(Object.fromEntries(props.formModel.map((item) => [item.id, ''])))
 
 async function submit() {
   const { valid: isValid } = await form.value.validate()
@@ -35,14 +33,9 @@ async function clear() {
     </div>
     <v-form ref="form" v-model="valid">
       <v-row density="compact">
-        <v-col
-          v-for="item in formModel"
-          :key="item.id"
-          cols="12"
-          :md="item.cols || 6"
-        >
+        <v-col v-for="item in formModel" :key="item.id" cols="12" :md="item.cols || 6">
           <BaseInput
-            v-if="!item.type || item.type !== 'textarea' && item.type !== 'select'"
+            v-if="!item.type || (item.type !== 'textarea' && item.type !== 'select')"
             v-model="values[item.id]"
             :type="item.type || 'text'"
             :label="item.label"
@@ -68,8 +61,8 @@ async function clear() {
       </v-row>
       <v-row density="compact">
         <v-col align="center">
-          <BaseButton label="Clear Form" @click="clear" color="secondary"/>
-          <BaseButton label="Submit" @click="submit" icon="mdi-send"/>
+          <BaseButton label="Clear Form" @click="clear" color="secondary" />
+          <BaseButton label="Submit" @click="submit" icon="mdi-send" />
         </v-col>
       </v-row>
     </v-form>

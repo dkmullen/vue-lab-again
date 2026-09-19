@@ -32,10 +32,15 @@ const router = createRouter({
           path: ':id',
           name: 'article-detail',
           component: () => import('../views/ArticleDetail.vue'),
-        }
-      ]
-    }
-  ]
+        },
+      ],
+    },
+    {
+      path: '/file-selection',
+      name: 'files',
+      component: () => import('../views/FileSelection.vue'),
+    },
+  ],
 })
 
 export default router

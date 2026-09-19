@@ -28,14 +28,16 @@ onMounted(() => {
       <router-link class="nav-link mr-4" to="/page-two">Page Two</router-link>
       <router-link class="nav-link mr-4" to="/about">About</router-link>
       <router-link class="nav-link mr-4" to="/articles">Articles</router-link>
+      <router-link class="nav-link mr-4" to="/file-selection">File Selection</router-link>
     </div>
     <div>
       <v-btn icon @click="toggleTheme" variant="text">
-        <v-icon>{{ theme.global.current.value.dark ? 'mdi-white-balance-sunny' : 'mdi-weather-night' }}</v-icon>
+        <v-icon>{{
+          theme.global.current.value.dark ? 'mdi-white-balance-sunny' : 'mdi-weather-night'
+        }}</v-icon>
       </v-btn>
     </div>
   </nav>
-
 </template>
 
 <style scoped>

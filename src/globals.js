@@ -12,5 +12,5 @@ export default {
 
       app.component(`${componentName}`, m.default)
     })
-  }
+  },
 }

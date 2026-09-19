@@ -1,5 +1,4 @@
 <script setup>
-
 import { ref, computed } from 'vue'
 
 const pageCount = computed(() => Math.ceil(props.items.length / 10))
@@ -32,10 +31,9 @@ function getIcon(action) {
       return ''
   }
 }
-
 </script>
 
- <template>
+<template>
   <v-sheet border rounded>
     <v-data-table
       :headers="headers"
@@ -64,16 +62,20 @@ function getIcon(action) {
 
       <template v-slot:[`item.actions`]="{ item }">
         <div class="d-flex ga-2 justify-end">
-          <v-icon v-for="action in actions" :key="action" :color="medium-emphasis"
-            :icon="getIcon(action)" size="small" @click="doAction(action, item.id)">
+          <v-icon
+            v-for="action in actions"
+            :key="action"
+            :color="medium - emphasis"
+            :icon="getIcon(action)"
+            size="small"
+            @click="doAction(action, item.id)"
+          >
           </v-icon>
         </div>
       </template>
 
       <template v-slot:no-data>
-        <v-alert :value="true">
-          No data available
-        </v-alert>
+        <v-alert :value="true"> No data available </v-alert>
       </template>
     </v-data-table>
   </v-sheet>
@@ -84,4 +86,3 @@ function getIcon(action) {
   height: 70vh;
 }
 </style>
-
